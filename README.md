@@ -1,12 +1,12 @@
 A simple script for uploading videos downloaded from gfycat to imgur
 
-# Imgur App
+### Imgur App
 
 You will need to register your app with imgur and get an auth token.
 Step by step instructions can be found [here](https://apidocs.imgur.com/)
 Save your authentication information in conf.py
 
-# Gfycat data
+### Gfycat data
 
 `data/gfycat.json` - (Optional) This file is used to link videos to their
 gfycat information. This is done by matching the video name with the title
@@ -16,7 +16,7 @@ Expected format: list of dict
 Minimum required keys: gfy_id, title
 Optional keys: tags
 
-# Imgur Data
+### Imgur Data
 
 `data/imgur.json` - This file will be created by the script. It is used to keep
 track of what has been uploaded and linking gfys with their imgur counterparts
@@ -26,7 +26,7 @@ Expected format: list of dict
 Minimum required keys: imgur_url
 Optional keys: tags, gfy_id
 
-# Search
+### Search
 
 `search.py` - Simple search script for searching uploaded imgurs based on the
 tags read from gfycat.json
