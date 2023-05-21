@@ -1,0 +1,6 @@
+CLIENT_ID = "xxxxxxxxxxxxxxx"
+CLIENT_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+AUTH_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+REFRESH_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+VIDEOS_DIR = "/media/badmagick/HDD/Kpop/downloaded_gfys/bjh0329"
+MAX_UPLOADS = 1
