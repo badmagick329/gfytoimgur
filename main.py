@@ -77,15 +77,14 @@ def upload_videos(
     videos: list[Path], imgurdata: ImgurData, gfydata: GfyData, max: int = 1
 ):
     uploaded = 0
-    errored = list()
-    for video in videos:
+    videos = list(videos)
+    for i, video in enumerate(videos):
         if uploaded >= max:
             break
         if imgurdata.is_uploaded(video):
-            # print(f"Skipping {video} because it's already uploaded")
             continue
         gfy = gfydata.file_to_gfy(video)
-        print(f"Uploading {video}")
+        print(f"[{i+1}/{len(videos)}] Uploading {video}")
         config = {
             "album": None,
             "title": gfy.title,
@@ -95,16 +94,14 @@ def upload_videos(
         try:
             image = upload_video(str(video), config=config)
         except Exception as e:
-            errored.append((video, e))
-            break
+            print(f"Failed to upload {video} - {e}")
+            sys.exit(1)
         imgur = Imgur(image["link"], gfy.title, gfy.tags, gfy.gfy_id)
         imgurdata.imgurs.append(imgur)
         imgurdata.save(IMGUR_DATA)
         uploaded += 1
         print(image["link"])
     print(f"Uploaded {uploaded} videos")
-    for video, e in errored:
-        print(f"Failed to upload {video} - {e}")
 
 
 if __name__ == "__main__":
