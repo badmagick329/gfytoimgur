@@ -1,4 +1,5 @@
 A simple script for uploading videos downloaded from gfycat to imgur.
+
 Note: You cannot upload more than 50 videos per hour
 
 ### Imgur App
@@ -14,7 +15,9 @@ gfycat information. This is done by matching the video name with the title
 value.
 
 Expected format: list of dict
+
 Minimum required keys: gfy_id, title
+
 Optional keys: tags
 
 ### Imgur Data
@@ -24,7 +27,9 @@ track of what has been uploaded and linking gfys with their imgur counterparts
 if gfycat.json is found
 
 Expected format: list of dict
+
 Minimum required keys: imgur_url
+
 Optional keys: tags, gfy_id
 
 ### Search
