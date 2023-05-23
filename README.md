@@ -1,4 +1,5 @@
-A simple script for uploading videos downloaded from gfycat to imgur
+A simple script for uploading videos downloaded from gfycat to imgur.
+Note: You cannot upload more than 50 videos per hour
 
 ### Imgur App
 

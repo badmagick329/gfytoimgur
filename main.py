@@ -65,6 +65,8 @@ def upload_video(video_path: Path | str, config: dict) -> dict:
         image_bytes,
     )
     response = requests.request("POST", url, headers=header, data=config, files=[file])
+    if response.status_code != 200:
+        raise Exception(f"Failed to upload {video_path} - {response.text}")
     response = response.json()
     if response["success"]:
         return response["data"]
