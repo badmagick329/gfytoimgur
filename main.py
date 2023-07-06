@@ -9,9 +9,6 @@ from filedata import GfyData, Imgur, ImgurData
 BASE_DIR = Path(__file__).resolve().parent
 if str(BASE_DIR) not in sys.path:
     sys.path.append(str(BASE_DIR))
-# Expected format: list of dict
-# Minimum required keys: imgur_url
-# Optional keys: tags, gfy_id
 IMGUR_DATA = BASE_DIR / "data" / "imgur.json"
 
 # Expected format: list of dict
@@ -87,16 +84,16 @@ def upload_videos(
         print(f"[{i+1}/{len(videos)}] Uploading {video}")
         config = {
             "album": None,
-            "title": gfy.title,
+            "title": video.stem,
             "description": None,
-            "name": gfy.title,
+            "name": video.stem,
         }
         try:
             image = upload_video(str(video), config=config)
         except Exception as e:
             print(f"Failed to upload {video} - {e}")
             sys.exit(1)
-        imgur = Imgur(image["link"], gfy.title, gfy.tags, gfy.gfy_id)
+        imgur = Imgur(image["link"], gfy.title, video.stem, gfy.tags, gfy.gfy_id)
         imgurdata.imgurs.append(imgur)
         imgurdata.save(IMGUR_DATA)
         uploaded += 1

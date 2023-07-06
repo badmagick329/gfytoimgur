@@ -44,15 +44,22 @@ class GfyData:
 @dataclass
 class Imgur:
     imgur_url: str
-    title: str
+    gfy_title: str
+    imgur_title: str
     tags: list[str] | None
     gfy_id: str | None
 
     def __init__(
-        self, imgur_url: str, title: str, tags: list[str] | None, gfy_id: str | None
+        self,
+        imgur_url: str,
+        gfy_title: str,
+        imgur_title: str,
+        tags: list[str] | None,
+        gfy_id: str | None,
     ) -> None:
         self.imgur_url = imgur_url
-        self.title = title
+        self.gfy_title = gfy_title
+        self.imgur_title = imgur_title
         self.tags = tags
         self.gfy_id = gfy_id
 
@@ -69,7 +76,8 @@ class ImgurData:
             imgurs.append(
                 Imgur(
                     imgur["imgur_url"],
-                    imgur["title"],
+                    imgur["gfy_title"],
+                    imgur["imgur_title"],
                     imgur.get("tags", None),
                     imgur.get("gfy_id", None),
                 )
@@ -80,7 +88,7 @@ class ImgurData:
         video = Path(video)
         assert video.exists(), f"{video} does not exist"
         for imgur in self.imgurs:
-            if imgur.title.lower() in video.name.lower():
+            if imgur.imgur_title.lower() in video.name.lower():
                 return True
         return False
 
@@ -90,7 +98,8 @@ class ImgurData:
             save_data.append(
                 {
                     "imgur_url": imgur.imgur_url,
-                    "title": imgur.title,
+                    "gfy_title": imgur.gfy_title,
+                    "imgur_title": imgur.imgur_title,
                     "tags": imgur.tags,
                     "gfy_id": imgur.gfy_id,
                 }
